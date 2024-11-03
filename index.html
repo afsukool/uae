@@ -3,178 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy UAE National Day</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>UAE National Day Celebration</title>
     <style>
-        body {
-            background-color: #f7f7f7;
-            overflow: hidden;
+        /* Basic reset and body styling */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .message {
-            font-size: 30px;
-            font-weight: bold;
-            color: #00732F; /* UAE Flag green color */
-            position: relative;
-            margin-top: 20px;
-        }
-        .flag-container {
+        html, body {
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 50px;
-            position: relative;
+            background-color: #ECEFF1;
+            perspective: 700px;
         }
 
-        /* Correct UAE Flag */
-        .flag {
+        /* Wrapper styling for waving effect */
+        .wrapper {
+            position: relative;
             width: 300px;
             height: 200px;
-            display: flex;
-            border-radius: 3px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            animation: wave 2s infinite ease-in-out;
-            transform-origin: left center;
+            transform: rotateY(20deg) skew(5deg);
+            transform-style: preserve-3d;
+            background-image: url("https://flags.fmcdn.net/data/flags/w580/ae.png");
+            background-size: cover;
+            background-position: center;
         }
 
-        .flag .red {
-            background-color: #FF0000; /* Red stripe */
-            width: 20%;
-        }
-
-        .flag .stripes {
-            width: 80%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .flag .green { background-color: #00732F; height: 33.33%; } /* Green stripe */
-        .flag .white { background-color: #FFFFFF; height: 33.33%; } /* White stripe */
-        .flag .black { background-color: #000000; height: 33.33%; } /* Black stripe */
-
-        /* Waving keyframes */
-        @keyframes wave {
-            0% { transform: rotate(0deg) skewY(0deg); }
-            25% { transform: rotate(1deg) skewY(3deg); }
-            50% { transform: rotate(0deg) skewY(0deg); }
-            75% { transform: rotate(-1deg) skewY(-3deg); }
-            100% { transform: rotate(0deg) skewY(0deg); }
-        }
-
-        /* Celebrate message */
-        .celebrate-message {
-            font-size: 24px;
-            font-weight: bold;
-            color: #ff0000;
-            display: none;
-            animation: pop-up 0.5s ease-out forwards;
-        }
-
-        /* Popper (confetti) effect */
-        .confetti {
+        /* Flagpole styling */
+        .wrapper::before {
+            content: "";
             position: absolute;
-            width: 5px;
-            height: 15px;
-            background-color: yellow;
-            border-radius: 2px;
-            opacity: 0;
-            animation: confetti-animation 2s infinite ease-out;
+            width: 8px;
+            height: 400px;
+            background: gold;
+            left: 0;
+            top: 0;
         }
 
-        /* Crackers (bursts) effect */
-        .cracker {
+        /* Waving effect for each flag segment */
+        @keyframes wave {
+            0% { transform: translateZ(0) rotateY(0deg); }
+            50% { transform: translateZ(5px) rotateY(5deg); }
+            100% { transform: translateZ(0) rotateY(0deg); }
+        }
+
+        /* Segment styling */
+        .segment {
             position: absolute;
             width: 15px;
-            height: 15px;
-            background-color: red;
-            border-radius: 50%;
-            opacity: 0;
-            animation: cracker-animation 1s ease-out infinite;
+            height: 100%;
+            background-image: inherit;
+            background-size: 300px 200px;
+            background-repeat: no-repeat;
+            transform-origin: 0 0;
+            animation: wave 1s ease-in-out infinite alternate;
         }
 
-        /* Confetti animation */
-        @keyframes confetti-animation {
-            0% {
-                opacity: 1;
-                transform: translateY(0) rotate(0deg);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(200px) rotate(180deg);
-            }
-        }
-
-        /* Crackers animation */
-        @keyframes cracker-animation {
-            0% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(3); }
-        }
+        /* Position each segment with background offset */
+        .segment:nth-child(1) { left: 0; animation-delay: 0s; background-position: 0 0; }
+        .segment:nth-child(2) { left: 15px; animation-delay: 0.1s; background-position: -15px 0; }
+        .segment:nth-child(3) { left: 30px; animation-delay: 0.2s; background-position: -30px 0; }
+        .segment:nth-child(4) { left: 45px; animation-delay: 0.3s; background-position: -45px 0; }
+        .segment:nth-child(5) { left: 60px; animation-delay: 0.4s; background-position: -60px 0; }
+        /* Add more segments as needed */
     </style>
 </head>
 <body>
-    <div class="container text-center">
-        <h1 class="mt-5">Happy UAE National Day!</h1>
-        <p class="message">Let's celebrate the pride of our nation!</p>
-        
-        <div class="flag-container">
-            <div class="flag">
-                <div class="red"></div>
-                <div class="stripes">
-                    <div class="green"></div>
-                    <div class="white"></div>
-                    <div class="black"></div>
-                </div>
-            </div>
-        </div>
 
-        <button id="celebrateBtn" class="btn btn-success mt-4">Celebrate</button>
-        
-        <p id="celebrateMessage" class="celebrate-message">Happy National Day! Long live the UAE!</p>
-        
-        <!-- Audio for UAE National Anthem -->
-        <audio id="anthemAudio" src="https://soundcloud.com/zaza-zaza-243652011/uae-national-anthem-ar-en" preload="auto"></audio>
+    <!-- Wrapper with segments for waving effect -->
+    <div class="wrapper">
+        <div class="segment"></div>
+        <div class="segment"></div>
+        <div class="segment"></div>
+        <div class="segment"></div>
+        <div class="segment"></div>
+        <!-- Continue with more segments if needed -->
     </div>
 
-    <!-- jQuery and Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- UAE National Anthem audio -->
+    <audio id="anthemAudio" controls autoplay loop style="display: none;">
+        <source src="https://www.youtube.com/watch?v=6XENeNm6YKM" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-    <!-- JavaScript for button interaction, popper, and cracker effects -->
+    <!-- Confetti effect with JavaScript -->
     <script>
-        document.getElementById('celebrateBtn').addEventListener('click', function() {
-            document.getElementById('celebrateMessage').style.display = 'block';
-            document.getElementById('anthemAudio').play();
-            generateConfetti();
-            generateCrackers();
-        });
+        // Play audio when the page loads
+        document.getElementById("anthemAudio").play();
 
-        // Function to generate random confetti
-        function generateConfetti() {
-            const container = document.querySelector('.flag-container');
-            for (let i = 0; i < 30; i++) {
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                confetti.style.left = `${Math.random() * 300 - 50}px`;
-                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                container.appendChild(confetti);
-                // Remove confetti after animation
-                setTimeout(() => confetti.remove(), 2000);
+        // Confetti effect using canvas
+        const canvas = document.createElement("canvas");
+        canvas.id = "confettiCanvas";
+        document.body.appendChild(canvas);
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const ctx = canvas.getContext("2d");
+
+        const colors = ["#FF0000", "#00732F", "#FFFFFF", "#000000"];
+        const confetti = [];
+
+        function randomColor() {
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 150; i++) {
+                confetti.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 5 + 5,
+                    color: randomColor(),
+                    speedY: Math.random() * 3 + 1,
+                    speedX: Math.random() * 2 - 1
+                });
             }
         }
 
-        // Function to generate random crackers
-        function generateCrackers() {
-            const container = document.querySelector('.flag-container');
-            for (let i = 0; i < 10; i++) {
-                const cracker = document.createElement('div');
-                cracker.classList.add('cracker');
-                cracker.style.left = `${Math.random() * 300 - 50}px`;
-                cracker.style.top = `${Math.random() * 150 - 50}px`;
-                container.appendChild(cracker);
-                // Remove cracker after animation
-                setTimeout(() => cracker.remove(), 1000);
-            }
+        function drawConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            confetti.forEach(c => {
+                ctx.fillStyle = c.color;
+                ctx.fillRect(c.x, c.y, c.size, c.size);
+                c.y += c.speedY;
+                c.x += c.speedX;
+                if (c.y > canvas.height) c.y = 0;
+                if (c.x > canvas.width || c.x < 0) c.x = Math.random() * canvas.width;
+            });
+            requestAnimationFrame(drawConfetti);
         }
+
+        createConfetti();
+        drawConfetti();
     </script>
 </body>
 </html>
