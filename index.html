@@ -16,47 +16,33 @@
             overflow: hidden; /* Prevent scrolling */
         }
         .flag {
-            width: 300px; /* Set width */
-            height: 200px; /* Set height */
+            width: 300px; /* Set the width of the flag */
+            height: 200px; /* Set the height of the flag */
             position: relative;
             animation: wave 1.5s ease-in-out infinite; /* Waving animation */
+            border: 1px solid black; /* Optional: border around the flag */
         }
         /* Create the flag using the UAE colors */
-        .flag::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%; /* Full width */
-            height: 50%; /* Top half */
+        .flag .red {
             background-color: #FF0000; /* Red */
+            height: 50%; /* Red section height */
         }
-        .flag::after {
-            content: '';
-            position: absolute;
-            top: 50%; /* Start from the middle */
-            left: 0;
-            width: 100%; /* Full width */
-            height: 25%; /* Middle quarter */
+        .flag .white {
             background-color: #FFFFFF; /* White */
+            height: 25%; /* White section height */
         }
-        .green-stripe {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%; /* Full width */
-            height: 25%; /* Bottom quarter */
+        .flag .green {
             background-color: #00732F; /* Green */
+            height: 25%; /* Green section height */
         }
-        .black-stripe {
-            position: absolute;
-            bottom: 25%; /* Starts where green ends */
-            left: 0;
-            width: 100%; /* Full width */
-            height: 25%; /* Black stripe */
+        .flag .black {
             background-color: #000000; /* Black */
+            height: 25%; /* Black section height */
+            position: absolute;
+            bottom: 0; /* Position at the bottom */
+            width: 100%; /* Full width */
         }
-
+        
         @keyframes wave {
             0%, 100% {
                 transform: translateY(0);
@@ -71,8 +57,10 @@
 
     <!-- Flag representation -->
     <div class="flag">
-        <div class="black-stripe"></div>
-        <div class="green-stripe"></div>
+        <div class="red"></div>
+        <div class="white"></div>
+        <div class="green"></div>
+        <div class="black"></div>
     </div>
 
     <!-- UAE National Anthem audio -->
