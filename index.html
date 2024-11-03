@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy UAE National Day</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7f7f7;
+        }
+        .flag-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .message {
+            font-size: 24px;
+            font-weight: bold;
+            color: #006a4e; /* UAE Flag green color */
+        }
+        .celebrate-message {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ff0000;
+            display: none;
+        }
+        .flag-image {
+            max-width: 400px;
+            margin-top: 20px;
+            animation: wave 2s infinite;
+        }
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg); }
+            100% { transform: rotate(0deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h1 class="mt-5">Happy UAE National Day!</h1>
+        <p class="message">Let's celebrate the pride of our nation!</p>
+        
+        <div class="flag-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_the_United_Arab_Emirates.svg" alt="UAE Flag" class="flag-image">
+        </div>
+        
+        <button id="celebrateBtn" class="btn btn-success mt-4">Celebrate</button>
+        
+        <p id="celebrateMessage" class="celebrate-message">Happy National Day! Long live the UAE!</p>
+    </div>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript to show message on button click -->
+    <script>
+        document.getElementById('celebrateBtn').addEventListener('click', function() {
+            document.getElementById('celebrateMessage').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
