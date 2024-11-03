@@ -17,7 +17,7 @@
             justify-content: center;
             align-items: center;
             background-color: #ECEFF1;
-            perspective: 700px;
+            overflow: hidden; /* Prevent scrolling */
         }
 
         /* Wrapper styling for waving effect */
@@ -25,13 +25,19 @@
             position: relative;
             width: 300px; /* Width of the flag */
             height: 200px; /* Height of the flag */
-            transform: rotateY(20deg) skew(5deg);
+            transform: rotateY(10deg) skew(5deg);
             transform-style: preserve-3d;
-            background-image: url("https://flags.fmcdn.net/data/flags/w580/ae.png");
-            background-size: cover;
-            background-position: center;
-            margin: auto; /* Center the flag horizontally */
-            overflow: hidden; /* Hide overflow to keep it centered */
+            background-color: #00732F; /* Base color */
+            overflow: hidden; /* Hide overflow */
+        }
+
+        /* Flag sections */
+        .flag {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, #FF0000 25%, #FFFFFF 25%, #FFFFFF 50%, #00732F 50%, #00732F 75%, #000000 75%);
+            animation: wave 1s ease-in-out infinite alternate;
         }
 
         /* Flagpole styling */
@@ -42,46 +48,22 @@
             height: 400px;
             background: gold;
             left: 0;
-            top: 0;
+            top: -100px; /* Adjusted to show flagpole correctly */
         }
 
-        /* Waving effect for each flag segment */
+        /* Waving effect */
         @keyframes wave {
             0% { transform: translateZ(0) rotateY(0deg); }
             50% { transform: translateZ(5px) rotateY(5deg); }
             100% { transform: translateZ(0) rotateY(0deg); }
         }
-
-        /* Segment styling */
-        .segment {
-            position: absolute;
-            width: 15px;
-            height: 100%;
-            background-image: inherit;
-            background-size: 300px 200px;
-            background-repeat: no-repeat;
-            transform-origin: 0 0;
-            animation: wave 1s ease-in-out infinite alternate;
-        }
-
-        /* Position each segment with background offset */
-        .segment:nth-child(1) { left: 0; animation-delay: 0s; background-position: 0 0; }
-        .segment:nth-child(2) { left: 15px; animation-delay: 0.1s; background-position: -15px 0; }
-        .segment:nth-child(3) { left: 30px; animation-delay: 0.2s; background-position: -30px 0; }
-        .segment:nth-child(4) { left: 45px; animation-delay: 0.3s; background-position: -45px 0; }
-        .segment:nth-child(5) { left: 60px; animation-delay: 0.4s; background-position: -60px 0; }
     </style>
 </head>
 <body>
 
-    <!-- Wrapper with segments for waving effect -->
+    <!-- Wrapper with flag -->
     <div class="wrapper">
-        <div class="segment"></div>
-        <div class="segment"></div>
-        <div class="segment"></div>
-        <div class="segment"></div>
-        <div class="segment"></div>
-        <!-- Continue with more segments if needed -->
+        <div class="flag"></div>
     </div>
 
     <!-- UAE National Anthem audio -->
