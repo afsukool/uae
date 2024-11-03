@@ -4,74 +4,177 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy UAE National Day</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
+            background-color: #f7f7f7;
+            overflow: hidden;
+        }
+        .message {
+            font-size: 30px;
+            font-weight: bold;
+            color: #00732F; /* UAE Flag green color */
+            position: relative;
+            margin-top: 20px;
+        }
+        .flag-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #ECEFF1;
-            overflow: hidden; /* Prevent scrolling */
-        }
-        .flag {
-            width: 300px; /* Set the width of the flag */
-            height: 200px; /* Set the height of the flag */
+            margin-top: 50px;
             position: relative;
-            animation: wave 1.5s ease-in-out infinite; /* Waving animation */
-            border: 1px solid black; /* Optional: border around the flag */
         }
-        /* Create the flag using the UAE colors */
+
+        /* Correct UAE Flag */
+        .flag {
+            width: 300px;
+            height: 200px;
+            display: flex;
+            border-radius: 3px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            animation: wave 2s infinite ease-in-out;
+            transform-origin: left center;
+        }
+
         .flag .red {
-            background-color: #FF0000; /* Red */
-            height: 50%; /* Red section height */
+            background-color: #FF0000; /* Red stripe */
+            width: 20%;
         }
-        .flag .white {
-            background-color: #FFFFFF; /* White */
-            height: 25%; /* White section height */
-        }
-        .flag .green {
-            background-color: #00732F; /* Green */
-            height: 25%; /* Green section height */
-        }
-        .flag .black {
-            background-color: #000000; /* Black */
-            height: 25%; /* Black section height */
-            position: absolute;
-            bottom: 0; /* Position at the bottom */
-            width: 100%; /* Full width */
+
+        .flag .stripes {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
         }
         
+        .flag .green { background-color: #00732F; height: 33.33%; } /* Green stripe */
+        .flag .white { background-color: #FFFFFF; height: 33.33%; } /* White stripe */
+        .flag .black { background-color: #000000; height: 33.33%; } /* Black stripe */
+
+        /* Waving keyframes */
         @keyframes wave {
-            0%, 100% {
-                transform: translateY(0);
+            0% { transform: rotate(0deg) skewY(0deg); }
+            25% { transform: rotate(1deg) skewY(3deg); }
+            50% { transform: rotate(0deg) skewY(0deg); }
+            75% { transform: rotate(-1deg) skewY(-3deg); }
+            100% { transform: rotate(0deg) skewY(0deg); }
+        }
+
+        /* Celebrate message */
+        .celebrate-message {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff0000;
+            display: none;
+            animation: pop-up 0.5s ease-out forwards;
+        }
+
+        /* Popper (confetti) effect */
+        .confetti {
+            position: absolute;
+            width: 5px;
+            height: 15px;
+            background-color: yellow;
+            border-radius: 2px;
+            opacity: 0;
+            animation: confetti-animation 2s infinite ease-out;
+        }
+
+        /* Crackers (bursts) effect */
+        .cracker {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: red;
+            border-radius: 50%;
+            opacity: 0;
+            animation: cracker-animation 1s ease-out infinite;
+        }
+
+        /* Confetti animation */
+        @keyframes confetti-animation {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
             }
-            50% {
-                transform: translateY(-5px);
+            100% {
+                opacity: 0;
+                transform: translateY(200px) rotate(180deg);
             }
+        }
+
+        /* Crackers animation */
+        @keyframes cracker-animation {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(3); }
         }
     </style>
 </head>
 <body>
+    <div class="container text-center">
+        <h1 class="mt-5">Happy UAE National Day!</h1>
+        <p class="message">Let's celebrate the pride of our nation!</p>
+        
+        <div class="flag-container">
+            <div class="flag">
+                <div class="red"></div>
+                <div class="stripes">
+                    <div class="green"></div>
+                    <div class="white"></div>
+                    <div class="black"></div>
+                </div>
+            </div>
+        </div>
 
-    <!-- Flag representation -->
-    <div class="flag">
-        <div class="red"></div>
-        <div class="white"></div>
-        <div class="green"></div>
-        <div class="black"></div>
+        <button id="celebrateBtn" class="btn btn-success mt-4">Celebrate</button>
+        
+        <p id="celebrateMessage" class="celebrate-message">Happy National Day! Long live the UAE!</p>
+        
+        <!-- Audio for UAE National Anthem -->
+        <audio id="anthemAudio" src="https://www.example.com/uae_national_anthem.mp3" preload="auto"></audio>
     </div>
 
-    <!-- UAE National Anthem audio -->
-    <audio controls autoplay loop style="display: none;">
-        <source src="https://www.youtube.com/watch?v=6XENeNm6YKM" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <!-- JavaScript for button interaction, popper, and cracker effects -->
     <script>
-        // Play audio when the page loads
-        document.querySelector("audio").play();
+        document.getElementById('celebrateBtn').addEventListener('click', function() {
+            document.getElementById('celebrateMessage').style.display = 'block';
+            document.getElementById('anthemAudio').play();
+            generateConfetti();
+            generateCrackers();
+        });
+
+        // Function to generate random confetti
+        function generateConfetti() {
+            const container = document.querySelector('.flag-container');
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = `${Math.random() * 300 - 50}px`;
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                container.appendChild(confetti);
+                // Remove confetti after animation
+                setTimeout(() => confetti.remove(), 2000);
+            }
+        }
+
+        // Function to generate random crackers
+        function generateCrackers() {
+            const container = document.querySelector('.flag-container');
+            for (let i = 0; i < 10; i++) {
+                const cracker = document.createElement('div');
+                cracker.classList.add('cracker');
+                cracker.style.left = `${Math.random() * 300 - 50}px`;
+                cracker.style.top = `${Math.random() * 150 - 50}px`;
+                container.appendChild(cracker);
+                // Remove cracker after animation
+                setTimeout(() => cracker.remove(), 1000);
+            }
+        }
     </script>
 </body>
 </html>
