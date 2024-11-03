@@ -20,14 +20,15 @@
             animation: sparkle 2s linear infinite;
         }
         .flag-container {
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-top: 50px;
             position: relative;
         }
 
         /* Correct UAE Flag */
         .flag {
-            position: relative;
             width: 300px;
             height: 200px;
             display: flex;
@@ -125,10 +126,10 @@
                 </div>
             </div>
             <!-- Glitter particles -->
-            <div class="glitter" style="top: -20px; left: 50px;"></div>
-            <div class="glitter" style="top: 10px; left: 200px;"></div>
-            <div class="glitter" style="top: -30px; left: 150px;"></div>
-            <div class="glitter" style="top: 20px; left: 80px;"></div>
+            <div class="glitter" style="top: -30px; left: 0px;"></div>
+            <div class="glitter" style="top: 30px; left: 250px;"></div>
+            <div class="glitter" style="top: -40px; left: 150px;"></div>
+            <div class="glitter" style="top: 40px; left: 100px;"></div>
         </div>
         
         <button id="celebrateBtn" class="btn btn-success mt-4">Celebrate</button>
@@ -152,7 +153,7 @@
             for (let i = 0; i < 8; i++) {
                 const glitter = document.createElement('div');
                 glitter.classList.add('glitter');
-                glitter.style.left = `${Math.random() * 200}px`;
+                glitter.style.left = `${Math.random() * 300 - 50}px`;
                 glitter.style.top = `${Math.random() * 150 - 50}px`;
                 glitterContainer.appendChild(glitter);
             }
@@ -161,4 +162,3 @@
     </script>
 </body>
 </html>
-
