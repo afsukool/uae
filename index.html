@@ -3,122 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UAE National Day Celebration</title>
+    <title>Happy UAE National Day</title>
     <style>
-        /* Basic reset and body styling */
-        *, *::before, *::after {
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-        html, body {
-            height: 100%;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: #ECEFF1;
             overflow: hidden; /* Prevent scrolling */
         }
-
-        /* Wrapper styling for waving effect */
-        .wrapper {
-            position: relative;
-            width: 300px; /* Width of the flag */
-            height: 200px; /* Height of the flag */
-            transform: rotateY(10deg) skew(5deg);
-            transform-style: preserve-3d;
-            overflow: hidden; /* Hide overflow */
-        }
-
-        /* Flag styling using linear gradient to represent UAE flag colors */
         .flag {
+            width: 300px; /* Set width */
+            height: 200px; /* Set height */
+            position: relative;
+            animation: wave 1.5s ease-in-out infinite; /* Waving animation */
+        }
+        /* Create the flag using the UAE colors */
+        .flag::before {
+            content: '';
             position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, #FF0000 25%, #FFFFFF 25%, #FFFFFF 50%, #00732F 50%, #00732F 75%, #000000 75%);
-            animation: wave 1s ease-in-out infinite alternate;
+            top: 0;
+            left: 0;
+            width: 100%; /* Full width */
+            height: 50%; /* Top half */
+            background-color: #FF0000; /* Red */
+        }
+        .flag::after {
+            content: '';
+            position: absolute;
+            top: 50%; /* Start from the middle */
+            left: 0;
+            width: 100%; /* Full width */
+            height: 25%; /* Middle quarter */
+            background-color: #FFFFFF; /* White */
+        }
+        .green-stripe {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%; /* Full width */
+            height: 25%; /* Bottom quarter */
+            background-color: #00732F; /* Green */
+        }
+        .black-stripe {
+            position: absolute;
+            bottom: 25%; /* Starts where green ends */
+            left: 0;
+            width: 100%; /* Full width */
+            height: 25%; /* Black stripe */
+            background-color: #000000; /* Black */
         }
 
-        /* Flagpole styling */
-        .wrapper::before {
-            content: "";
-            position: absolute;
-            width: 10px; /* Thicker flagpole */
-            height: 400px;
-            background: gold;
-            left: -15px; /* Positioning the flagpole */
-            top: -100px; /* Adjusted to show flagpole correctly */
-        }
-
-        /* Waving effect */
         @keyframes wave {
-            0% { transform: translateZ(0) rotateY(0deg); }
-            50% { transform: translateZ(5px) rotateY(5deg); }
-            100% { transform: translateZ(0) rotateY(0deg); }
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Wrapper with flag -->
-    <div class="wrapper">
-        <div class="flag"></div>
+    <!-- Flag representation -->
+    <div class="flag">
+        <div class="black-stripe"></div>
+        <div class="green-stripe"></div>
     </div>
 
     <!-- UAE National Anthem audio -->
-    <audio id="anthemAudio" controls autoplay loop style="display: none;">
+    <audio controls autoplay loop style="display: none;">
         <source src="https://www.youtube.com/watch?v=6XENeNm6YKM" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
-    <!-- Confetti effect with JavaScript -->
     <script>
         // Play audio when the page loads
-        document.getElementById("anthemAudio").play();
-
-        // Confetti effect using canvas
-        const canvas = document.createElement("canvas");
-        canvas.id = "confettiCanvas";
-        document.body.appendChild(canvas);
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        const ctx = canvas.getContext("2d");
-
-        const colors = ["#FF0000", "#00732F", "#FFFFFF", "#000000"];
-        const confetti = [];
-
-        function randomColor() {
-            return colors[Math.floor(Math.random() * colors.length)];
-        }
-
-        function createConfetti() {
-            for (let i = 0; i < 150; i++) {
-                confetti.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    size: Math.random() * 5 + 5,
-                    color: randomColor(),
-                    speedY: Math.random() * 3 + 1,
-                    speedX: Math.random() * 2 - 1
-                });
-            }
-        }
-
-        function drawConfetti() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            confetti.forEach(c => {
-                ctx.fillStyle = c.color;
-                ctx.fillRect(c.x, c.y, c.size, c.size);
-                c.y += c.speedY;
-                c.x += c.speedX;
-                if (c.y > canvas.height) c.y = 0;
-                if (c.x > canvas.width || c.x < 0) c.x = Math.random() * canvas.width;
-            });
-            requestAnimationFrame(drawConfetti);
-        }
-
-        createConfetti();
-        drawConfetti();
+        document.querySelector("audio").play();
     </script>
 </body>
 </html>
