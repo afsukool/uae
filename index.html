@@ -14,7 +14,7 @@
         .message {
             font-size: 30px;
             font-weight: bold;
-            color: #006a4e; /* UAE Flag green color */
+            color: #00732F; /* UAE Flag green color */
             position: relative;
             margin-top: 20px;
             animation: sparkle 2s linear infinite;
@@ -24,18 +24,33 @@
             margin-top: 50px;
             position: relative;
         }
-        /* Flying flag animation */
-        .flag-image {
-            max-width: 300px;
-            margin-top: 20px;
-            animation: wave-animation 3s infinite linear;
+
+        /* Waving Flag Effect */
+        .flag {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background: linear-gradient(
+                to right,
+                #FF0000 20%,   /* Red stripe */
+                #FFFFFF 20% 40%, /* White stripe */
+                #00732F 40% 60%, /* Green stripe */
+                #000000 60% /* Black stripe */
+            );
+            border-radius: 3px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            animation: wave 2s infinite ease-in-out;
+            transform-origin: left center;
+            overflow: hidden;
         }
-        @keyframes wave-animation {
-            0% { transform: translateX(0) rotate(0deg); }
-            25% { transform: translateX(5px) rotate(-1deg); }
-            50% { transform: translateX(0) rotate(0deg); }
-            75% { transform: translateX(-5px) rotate(1deg); }
-            100% { transform: translateX(0) rotate(0deg); }
+
+        /* Waving keyframes */
+        @keyframes wave {
+            0% { transform: rotate(0deg) skewY(0deg); }
+            25% { transform: rotate(1deg) skewY(3deg); }
+            50% { transform: rotate(0deg) skewY(0deg); }
+            75% { transform: rotate(-1deg) skewY(-3deg); }
+            100% { transform: rotate(0deg) skewY(0deg); }
         }
 
         /* Celebrate message */
@@ -93,7 +108,7 @@
         <p class="message">Let's celebrate the pride of our nation!</p>
         
         <div class="flag-container">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_the_United_Arab_Emirates.svg" alt="UAE Flag" class="flag-image">
+            <div class="flag"></div>
             <!-- Glitter particles -->
             <div class="glitter" style="top: -20px; left: 50px;"></div>
             <div class="glitter" style="top: 10px; left: 200px;"></div>
