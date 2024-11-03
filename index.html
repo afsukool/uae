@@ -9,31 +9,81 @@
     <style>
         body {
             background-color: #f7f7f7;
+            overflow: hidden;
+        }
+        .message {
+            font-size: 30px;
+            font-weight: bold;
+            color: #006a4e; /* UAE Flag green color */
+            position: relative;
+            margin-top: 20px;
+            animation: sparkle 2s linear infinite;
         }
         .flag-container {
             text-align: center;
             margin-top: 50px;
+            position: relative;
         }
-        .message {
-            font-size: 24px;
-            font-weight: bold;
-            color: #006a4e; /* UAE Flag green color */
+        /* Flying flag animation */
+        .flag-image {
+            max-width: 300px;
+            margin-top: 20px;
+            animation: wave-animation 3s infinite linear;
         }
+        @keyframes wave-animation {
+            0% { transform: translateX(0) rotate(0deg); }
+            25% { transform: translateX(5px) rotate(-1deg); }
+            50% { transform: translateX(0) rotate(0deg); }
+            75% { transform: translateX(-5px) rotate(1deg); }
+            100% { transform: translateX(0) rotate(0deg); }
+        }
+
+        /* Celebrate message */
         .celebrate-message {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: bold;
             color: #ff0000;
             display: none;
+            animation: pop-up 0.5s ease-out forwards;
         }
-        .flag-image {
-            max-width: 400px;
-            margin-top: 20px;
-            animation: wave 2s infinite;
+
+        /* Glitter effect for text */
+        @keyframes sparkle {
+            0%, 100% { text-shadow: 0 0 5px #fff, 0 0 10px #0f0; }
+            50% { text-shadow: 0 0 15px #f0f, 0 0 20px #f0f; }
         }
-        @keyframes wave {
-            0% { transform: rotate(0deg); }
-            50% { transform: rotate(10deg); }
-            100% { transform: rotate(0deg); }
+
+        /* Pop-up animation */
+        @keyframes pop-up {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Glitter particles */
+        .glitter {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: yellow;
+            border-radius: 50%;
+            opacity: 0;
+            animation: glitter-animation 2s infinite ease-out;
+        }
+
+        /* Randomly position glitter particles */
+        @keyframes glitter-animation {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: translateY(-20px) scale(1.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.8);
+            }
         }
     </style>
 </head>
@@ -44,6 +94,11 @@
         
         <div class="flag-container">
             <img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_the_United_Arab_Emirates.svg" alt="UAE Flag" class="flag-image">
+            <!-- Glitter particles -->
+            <div class="glitter" style="top: -20px; left: 50px;"></div>
+            <div class="glitter" style="top: 10px; left: 200px;"></div>
+            <div class="glitter" style="top: -30px; left: 150px;"></div>
+            <div class="glitter" style="top: 20px; left: 80px;"></div>
         </div>
         
         <button id="celebrateBtn" class="btn btn-success mt-4">Celebrate</button>
@@ -55,11 +110,24 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- JavaScript to show message on button click -->
+    <!-- JavaScript for button interaction and glitter effect -->
     <script>
         document.getElementById('celebrateBtn').addEventListener('click', function() {
             document.getElementById('celebrateMessage').style.display = 'block';
         });
+
+        // JavaScript to create random glitter positions around the flag
+        function generateGlitter() {
+            const glitterContainer = document.querySelector('.flag-container');
+            for (let i = 0; i < 8; i++) {
+                const glitter = document.createElement('div');
+                glitter.classList.add('glitter');
+                glitter.style.left = `${Math.random() * 200}px`;
+                glitter.style.top = `${Math.random() * 150 - 50}px`;
+                glitterContainer.appendChild(glitter);
+            }
+        }
+        generateGlitter();
     </script>
 </body>
 </html>
