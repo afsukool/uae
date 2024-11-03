@@ -10,6 +10,7 @@
         body {
             background-color: #f7f7f7;
             overflow: hidden;
+            position: relative; /* Allow absolute positioning for confetti and crackers */
         }
         .message {
             font-size: 30px;
@@ -150,11 +151,11 @@
 
         // Function to generate random confetti
         function generateConfetti() {
-            const container = document.querySelector('.flag-container');
+            const container = document.body; // Change to body to spread across the entire viewport
             for (let i = 0; i < 30; i++) {
                 const confetti = document.createElement('div');
                 confetti.classList.add('confetti');
-                confetti.style.left = `${Math.random() * 300 - 50}px`;
+                confetti.style.left = `${Math.random() * window.innerWidth}px`; // Spread across the screen
                 confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
                 container.appendChild(confetti);
                 // Remove confetti after animation
@@ -164,12 +165,12 @@
 
         // Function to generate random crackers
         function generateCrackers() {
-            const container = document.querySelector('.flag-container');
+            const container = document.body; // Change to body to spread across the entire viewport
             for (let i = 0; i < 10; i++) {
                 const cracker = document.createElement('div');
                 cracker.classList.add('cracker');
-                cracker.style.left = `${Math.random() * 300 - 50}px`;
-                cracker.style.top = `${Math.random() * 150 - 50}px`;
+                cracker.style.left = `${Math.random() * window.innerWidth}px`; // Spread across the screen
+                cracker.style.top = `${Math.random() * window.innerHeight}px`; // Spread across the screen
                 container.appendChild(cracker);
                 // Remove cracker after animation
                 setTimeout(() => cracker.remove(), 1000);
