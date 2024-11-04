@@ -1,17 +1,32 @@
-/* Page Layout */
+/* Page Background with Animated Flag */
+body {
+    background-image: url('united-arab-emirates-726_256.gif');
+    background-size: 400px;
+    background-repeat: repeat;
+    animation: animateFlag 5s linear infinite;
+    opacity: 0.1; /* Set a low opacity for a subtle effect */
+}
+
+/* Flag Animation */
+@keyframes animateFlag {
+    0% { background-position: 0 0; }
+    100% { background-position: 400px 400px; }
+}
+
+/* Container Styling */
 .container {
     display: flex;
     height: 100vh;
     overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.9); /* Add a slight overlay for readability */
 }
 
 /* Story Section */
 .story-section {
     flex: 1;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9);
-    overflow-y: auto;
     color: #333;
+    overflow-y: auto;
 }
 
 .story-section h2 {
@@ -26,7 +41,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #f0f0f0;
     position: relative;
 }
 
@@ -35,6 +49,7 @@
     height: auto;
 }
 
+/* Celebrate Button */
 button#celebrateBtn {
     margin-top: 20px;
     padding: 10px 20px;
@@ -45,6 +60,7 @@ button#celebrateBtn {
     cursor: pointer;
 }
 
+/* Celebration Message */
 #celebrateMessage {
     display: none;
     margin-top: 20px;
