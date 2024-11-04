@@ -1,31 +1,53 @@
-/* Flag history article styles */
-.flag-history {
-    position: fixed;
-    bottom: -100%;
-    left: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 20px;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
-    font-size: 16px;
-    text-align: left;
-    transform: translateY(100%);
-    transition: transform 0.5s ease;
-    z-index: 9999;
+document.getElementById('celebrateBtn').addEventListener('click', function() {
+    document.getElementById('celebrateMessage').style.display = 'block';
+    document.getElementById('anthemAudio').play();
+    generateConfetti();
+    generateCrackers();
+    generateFlowers();
+});
+
+// Function to toggle flag history visibility
+document.getElementById('showHistoryBtn').addEventListener('click', function() {
+    const flagHistory = document.getElementById('flagHistory');
+    flagHistory.classList.toggle('show');
+});
+
+// Function to generate confetti scattered across the screen
+function generateConfetti() {
+    const container = document.body;
+    for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = `${Math.random() * window.innerWidth}px`;
+        confetti.style.top = `${Math.random() * window.innerHeight}px`;
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        container.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 2000);
+    }
 }
 
-.flag-history h2 {
-    color: #00732F;
-    font-size: 24px;
+// Function to generate cracker bursts scattered across the screen
+function generateCrackers() {
+    const container = document.body;
+    for (let i = 0; i < 20; i++) {
+        const cracker = document.createElement('div');
+        cracker.classList.add('cracker');
+        cracker.style.left = `${Math.random() * window.innerWidth}px`;
+        cracker.style.top = `${Math.random() * window.innerHeight}px`;
+        container.appendChild(cracker);
+        setTimeout(() => cracker.remove(), 1500);
+    }
 }
 
-.flag-history p {
-    color: #333;
-    margin-top: 10px;
-    line-height: 1.5;
-}
-
-/* Show the article by sliding it up */
-.flag-history.show {
-    transform: translateY(0);
+// Function to generate flower petals scattered across the screen
+function generateFlowers() {
+    const container = document.body;
+    for (let i = 0; i < 20; i++) {
+        const flower = document.createElement('div');
+        flower.classList.add('flower');
+        flower.style.left = `${Math.random() * window.innerWidth}px`;
+        flower.style.top = `${Math.random() * window.innerHeight}px`;
+        container.appendChild(flower);
+        setTimeout(() => flower.remove(), 3000);
+    }
 }
