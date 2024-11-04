@@ -1,3 +1,11 @@
+/* General Styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
 /* Background Layer */
 .background-layer {
     position: fixed;
@@ -6,44 +14,44 @@
     width: 100%;
     height: 100%;
     background-image: url('united-arab-emirates-726_256.gif');
-    background-size: cover; /* Adjust to cover for zoom effect */
-    background-repeat: no-repeat;
-    opacity: 0.3; /* Increase visibility */
-    z-index: -1; /* Place behind all content */
+    background-size: 400px;
+    background-repeat: repeat;
+    opacity: 0.1;
+    z-index: -1;
     animation: animateBackground 10s linear infinite;
 }
 
 /* Background Animation */
 @keyframes animateBackground {
-    0% { background-position: center; }
-    100% { background-position: center; }
+    0% { background-position: 0 0; }
+    100% { background-position: 400px 400px; }
 }
 
 /* Container Styling */
 .container {
     display: flex;
+    flex-direction: row;
     height: 100vh;
     overflow: hidden;
-    
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Story Section */
 .story-section {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Center the content vertically */
-    align-items: center; /* Center the content horizontally */
     padding: 20px;
     color: #333;
     overflow-y: auto;
-    
-    margin: 20px 0; /* Add top and bottom margins */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 0;
 }
 
 .story-section h2 {
     color: #00732F;
-    font-size: 24px;
+    font-size: 2rem; /* Responsive font size */
 }
 
 /* Celebration Section */
@@ -53,7 +61,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative;
+    padding: 20px;
 }
 
 .uae-flag {
@@ -65,7 +73,7 @@
 button#celebrateBtn {
     margin-top: 20px;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 1rem;
     background-color: #00732F;
     color: #fff;
     border: none;
@@ -76,22 +84,61 @@ button#celebrateBtn {
 #celebrateMessage {
     display: none;
     margin-top: 20px;
-    font-size: 24px;
+    font-size: 1.5rem;
     color: #ff0000;
     font-weight: bold;
 }
 
-/* Confetti, Crackers, and Flowers */
-.confetti, .cracker, .flower {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    animation: floatUp 2s ease-out forwards;
+/* Footer */
+footer {
+    margin-top: 20px;
 }
 
-@keyframes floatUp {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(-200px); opacity: 0; }
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .story-section,
+    .celebration-section {
+        flex: unset;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .story-section h2,
+    #celebrateMessage {
+        font-size: 1.5rem;
+    }
+
+    .uae-flag {
+        width: 150px;
+    }
+
+    button#celebrateBtn {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .story-section h2,
+    #celebrateMessage {
+        font-size: 1.2rem;
+    }
+
+    .uae-flag {
+        width: 100px;
+    }
+
+    button#celebrateBtn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+
+    .container {
+        padding: 10px;
+    }
 }
 
