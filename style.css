@@ -93,6 +93,20 @@ button#celebrateBtn {
 footer {
     margin-top: 20px;
 }
+/* Confetti, Crackers, and Flowers Styling */
+.confetti, .cracker, .flower {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: red; /* Change colors as needed */
+    animation: floatUp 2s ease-out forwards;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-200px); opacity: 0; }
+}
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
