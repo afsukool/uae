@@ -1,0 +1,81 @@
+body {
+    background-color: #f7f7f7;
+    overflow: hidden;
+}
+
+.message {
+    font-size: 30px;
+    font-weight: bold;
+    color: #00732F; /* UAE Flag green color */
+    margin-top: 20px;
+}
+
+.flag-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    position: relative;
+}
+
+.celebrate-message {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff0000;
+    display: none;
+    animation: pop-up 0.5s ease-out forwards;
+}
+
+/* Popper, cracker, and flower styles */
+.confetti, .cracker, .flower {
+    position: absolute;
+    opacity: 0;
+}
+
+.confetti {
+    width: 5px;
+    height: 15px;
+    background-color: yellow;
+    border-radius: 2px;
+    animation: confetti-animation 2s infinite ease-out;
+}
+
+.cracker {
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 50%;
+    animation: cracker-animation 1.5s ease-out infinite;
+}
+
+.flower {
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, pink, purple);
+    border-radius: 50%;
+    animation: flower-animation 3s ease-out infinite;
+}
+
+/* Confetti animation */
+@keyframes confetti-animation {
+    0% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(200px) rotate(180deg);
+    }
+}
+
+/* Cracker animation */
+@keyframes cracker-animation {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(3); }
+}
+
+/* Flower animation */
+@keyframes flower-animation {
+    0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+    100% { opacity: 0; transform: translateY(300px) rotate(360deg); }
+}
