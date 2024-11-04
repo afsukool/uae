@@ -22,19 +22,39 @@ function generateConfetti() {
     }
 }
 
-// Function to generate fireworks
+// Function to generate fireworks that burst into particles
 function generateFireworks() {
     const container = document.body;
     for (let i = 0; i < 5; i++) {
+        // Create the firework div that will "burst"
         const firework = document.createElement('div');
         firework.classList.add('firework');
-        // Randomize the left position within the viewport width
         firework.style.left = `${Math.random() * window.innerWidth}px`;
-        // Start the firework from a random height
-        firework.style.top = `${Math.random() * (window.innerHeight / 2)}px`; // Start from the upper half
+        firework.style.top = `${Math.random() * (window.innerHeight / 2)}px`;
         container.appendChild(firework);
-        // Remove firework after animation ends
-        setTimeout(() => firework.remove(), 1000); // Match duration of the animation
+
+        // Trigger the burst after a brief delay
+        setTimeout(() => {
+            firework.remove();
+            createParticles(firework.style.left, firework.style.top);
+        }, 800); // Match the time to the burst point
     }
 }
 
+// Function to create particles that scatter
+function createParticles(x, y) {
+    const container = document.body;
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.left = x;
+        particle.style.top = y;
+        particle.style.setProperty('--dx', Math.cos((2 * Math.PI * i) / 30)); // Spread particles evenly in a circle
+        particle.style.setProperty('--dy', Math.sin((2 * Math.PI * i) / 30));
+        particle.style.setProperty('--hue', Math.random()); // Random color
+        container.appendChild(particle);
+
+        // Remove particle after animation ends
+        setTimeout(() => particle.remove(), 1500);
+    }
+}
