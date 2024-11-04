@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy UAE National Flag Day</title>
+    <title>Happy UAE National Day</title>
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- External CSS -->
@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container text-center">
-        <h1 class="mt-5">Happy UAE National Flag Day!</h1>
+        <h1 class="mt-5">Happy UAE National Day!</h1>
         <p class="message">Let's celebrate the pride of our nation!</p>
         
         <div class="flag-container">
@@ -20,9 +20,17 @@
         </div>
 
         <button id="celebrateBtn" class="btn btn-success mt-4">Celebrate</button>
+        <button id="showHistoryBtn" class="btn btn-info mt-2">Learn the UAE Flag History</button>
         
-        <p id="celebrateMessage" class="celebrate-message">Happy National Flag Day! Long live the UAE!</p>
+        <p id="celebrateMessage" class="celebrate-message">Happy National Day! Long live the UAE!</p>
         
+        <!-- Hidden article div -->
+        <div id="flagHistory" class="flag-history">
+            <h2>History of the UAE Flag</h2>
+            <p>The United Arab Emirates (UAE) flag was designed in 1971 and symbolizes unity and patriotism. The colors of the flag represent Arab unity and stand for values of courage, honesty, love, and optimism. Each color has its own significance: the green represents prosperity, white stands for peace, black signifies strength, and red represents bravery.</p>
+            <p>The flag was officially adopted on December 2, 1971, during the founding of the UAE. Designed by Abdullah Mohammed Al Maainah, who was only 19 at the time, the flag became a symbol of the nation’s identity and unity.</p>
+        </div>
+
         <!-- Audio for UAE National Anthem -->
         <audio id="anthemAudio" src="https://www.example.com/uae_national_anthem.mp3" preload="auto"></audio>
     </div>
