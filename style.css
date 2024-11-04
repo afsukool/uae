@@ -94,3 +94,4 @@ button#celebrateBtn {
     0% { transform: translateY(0); opacity: 1; }
     100% { transform: translateY(-200px); opacity: 0; }
 }
+p {margin-bottom: -1em;  margin-top: 0em;}
