@@ -4,6 +4,7 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 /* Background Layer */
@@ -41,7 +42,6 @@ body {
     flex: 1;
     padding: 20px;
     color: #333;
-    overflow-y: auto;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -51,7 +51,15 @@ body {
 
 .story-section h2 {
     color: #00732F;
-    font-size: 2rem; /* Responsive font size */
+    font-size: 2rem;
+}
+
+.story-section p {
+    line-height: 1.6;
+}
+
+.story-section strong {
+    color: inherit; /* Will be styled by script */
 }
 
 /* Celebration Section */
@@ -67,6 +75,7 @@ body {
 .uae-flag {
     width: 200px;
     height: auto;
+    margin-bottom: 20px;
 }
 
 /* Celebrate Button */
@@ -77,7 +86,13 @@ button#celebrateBtn {
     background-color: #00732F;
     color: #fff;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button#celebrateBtn:hover {
+    background-color: #005f26;
 }
 
 /* Celebration Message */
@@ -89,23 +104,44 @@ button#celebrateBtn {
     font-weight: bold;
 }
 
-/* Footer */
-footer {
-    margin-top: 20px;
-}
 /* Confetti, Crackers, and Flowers Styling */
 .confetti, .cracker, .flower {
     position: absolute;
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: red; /* Change colors as needed */
+    z-index: 10;
     animation: floatUp 2s ease-out forwards;
 }
 
+.confetti {
+    background-color: hsl(0, 100%, 50%); /* Color can be customized in JS */
+}
+
+.cracker {
+    background-color: orange;
+    animation: burst 1.5s ease-out forwards;
+}
+
+.flower {
+    background-color: pink;
+    animation: floatUp 3s ease-out forwards;
+}
+
+/* Keyframes */
 @keyframes floatUp {
     0% { transform: translateY(0); opacity: 1; }
     100% { transform: translateY(-200px); opacity: 0; }
+}
+
+@keyframes burst {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Footer */
+footer {
+    margin-top: 20px;
 }
 
 /* Responsive Adjustments */
@@ -155,4 +191,3 @@ footer {
         padding: 10px;
     }
 }
-
