@@ -125,15 +125,18 @@ button#celebrateBtn:hover {
 @keyframes firework {
   0% { 
     transform: translate(-50%, 60vh);
-    width: 0.5vmin;
+    width: 1vmin; /* Increased initial size */
+    height: 1vmin; /* Increased initial size */
     opacity: 1;
   }
   50% { 
-    width: 0.5vmin;
+    width: 5vmin; /* Max size at peak */
+    height: 5vmin; /* Max size at peak */
     opacity: 1;
   }
   100% { 
-    width: 45vmin; 
+    width: 0; 
+    height: 0; 
     opacity: 0; 
   }
 }
@@ -141,22 +144,21 @@ button#celebrateBtn:hover {
 .firework,
 .firework::before,
 .firework::after {
-  --top: 60vh;
   content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 0.5vmin;
-  aspect-ratio: 1;
-  background:
+  width: 1vmin; /* Increased initial size */
+  height: 1vmin; /* Increased initial size */
+  background: 
     radial-gradient(circle, rgba(255, 0, 0, 1) 0%, rgba(255, 0, 0, 0) 80%),
     radial-gradient(circle, rgba(0, 255, 0, 1) 0%, rgba(0, 255, 0, 0) 80%),
     radial-gradient(circle, rgba(0, 0, 255, 1) 0%, rgba(0, 0, 255, 0) 80%),
     radial-gradient(circle, rgba(255, 255, 0, 1) 0%, rgba(255, 255, 0, 0) 80%);
-  background-size: 0.5vmin 0.5vmin;
+  background-size: 100% 100%; /* Cover the whole size */
   background-repeat: no-repeat;
-  animation: firework 2s infinite;
+  animation: firework 1s infinite; /* Shortened duration for faster bursts */
 }
 
 .firework::before {
