@@ -25,9 +25,11 @@ function generateFireworks() {
     for (let i = 0; i < 5; i++) {
         const firework = document.createElement('div');
         firework.classList.add('firework');
+        // Position firework at the bottom of the viewport
         firework.style.left = `${Math.random() * window.innerWidth}px`;
-        firework.style.top = `${Math.random() * window.innerHeight}px`;
+        firework.style.top = `60vh`; // Start from 60% of viewport height
         container.appendChild(firework);
+        // Remove firework after the animation duration
         setTimeout(() => firework.remove(), 2000);
     }
 }
