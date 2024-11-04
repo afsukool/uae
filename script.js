@@ -1,6 +1,15 @@
 document.getElementById('celebrateBtn').addEventListener('click', function() {
-    document.getElementById('celebrateMessage').style.display = 'block';
-    document.getElementById('anthemAudio').play();
+    // Display the celebration message
+    const message = document.getElementById('celebrateMessage');
+    message.style.display = 'block';
+
+    // Play the national anthem
+    const anthemAudio = document.getElementById('anthemAudio');
+    if (anthemAudio) {
+        anthemAudio.play();
+    }
+
+    // Generate celebration effects
     generateConfetti();
     generateCrackers();
     generateFlowers();
@@ -16,6 +25,8 @@ function generateConfetti() {
         confetti.style.top = `${Math.random() * window.innerHeight}px`;
         confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
         container.appendChild(confetti);
+
+        // Remove the confetti after animation ends
         setTimeout(() => confetti.remove(), 2000);
     }
 }
@@ -29,6 +40,8 @@ function generateCrackers() {
         cracker.style.left = `${Math.random() * window.innerWidth}px`;
         cracker.style.top = `${Math.random() * window.innerHeight}px`;
         container.appendChild(cracker);
+
+        // Remove the cracker after animation ends
         setTimeout(() => cracker.remove(), 1500);
     }
 }
@@ -42,6 +55,8 @@ function generateFlowers() {
         flower.style.left = `${Math.random() * window.innerWidth}px`;
         flower.style.top = `${Math.random() * window.innerHeight}px`;
         container.appendChild(flower);
+
+        // Remove the flower after animation ends
         setTimeout(() => flower.remove(), 3000);
     }
 }
