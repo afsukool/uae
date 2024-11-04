@@ -3,86 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy UAE National Day</title>
+    <title>Happy UAE National Flag Day</title>
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f7f7f7;
-            overflow: hidden;
-        }
-        .message {
-            font-size: 30px;
-            font-weight: bold;
-            color: #00732F; /* UAE Flag green color */
-            margin-top: 20px;
-        }
-        .flag-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 50px;
-            position: relative;
-        }
-        .celebrate-message {
-            font-size: 24px;
-            font-weight: bold;
-            color: #ff0000;
-            display: none;
-            animation: pop-up 0.5s ease-out forwards;
-        }
-
-        /* Popper, cracker, and flower styles */
-        .confetti, .cracker, .flower {
-            position: absolute;
-            opacity: 0;
-        }
-        .confetti {
-            width: 5px;
-            height: 15px;
-            background-color: yellow;
-            border-radius: 2px;
-            animation: confetti-animation 2s infinite ease-out;
-        }
-        .cracker {
-            width: 15px;
-            height: 15px;
-            background-color: red;
-            border-radius: 50%;
-            animation: cracker-animation 1.5s ease-out infinite;
-        }
-        .flower {
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, pink, purple);
-            border-radius: 50%;
-            animation: flower-animation 3s ease-out infinite;
-        }
-
-        /* Confetti animation */
-        @keyframes confetti-animation {
-            0% {
-                opacity: 1;
-                transform: translateY(0) rotate(0deg);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(200px) rotate(180deg);
-            }
-        }
-
-        /* Cracker animation */
-        @keyframes cracker-animation {
-            0% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(3); }
-        }
-
-        /* Flower animation */
-        @keyframes flower-animation {
-            0% { opacity: 1; transform: translateY(0) rotate(0deg); }
-            100% { opacity: 0; transform: translateY(300px) rotate(360deg); }
-        }
-    </style>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container text-center">
@@ -105,56 +30,7 @@
     <!-- jQuery and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- JavaScript for popper, cracker, and flower effects -->
-    <script>
-        document.getElementById('celebrateBtn').addEventListener('click', function() {
-            document.getElementById('celebrateMessage').style.display = 'block';
-            document.getElementById('anthemAudio').play();
-            generateConfetti();
-            generateCrackers();
-            generateFlowers();
-        });
-
-        // Function to generate confetti scattered across the screen
-        function generateConfetti() {
-            const container = document.body;
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                confetti.style.left = `${Math.random() * window.innerWidth}px`;
-                confetti.style.top = `${Math.random() * window.innerHeight}px`;
-                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                container.appendChild(confetti);
-                setTimeout(() => confetti.remove(), 2000);
-            }
-        }
-
-        // Function to generate cracker bursts scattered across the screen
-        function generateCrackers() {
-            const container = document.body;
-            for (let i = 0; i < 20; i++) {
-                const cracker = document.createElement('div');
-                cracker.classList.add('cracker');
-                cracker.style.left = `${Math.random() * window.innerWidth}px`;
-                cracker.style.top = `${Math.random() * window.innerHeight}px`;
-                container.appendChild(cracker);
-                setTimeout(() => cracker.remove(), 1500);
-            }
-        }
-
-        // Function to generate flower petals scattered across the screen
-        function generateFlowers() {
-            const container = document.body;
-            for (let i = 0; i < 20; i++) {
-                const flower = document.createElement('div');
-                flower.classList.add('flower');
-                flower.style.left = `${Math.random() * window.innerWidth}px`;
-                flower.style.top = `${Math.random() * window.innerHeight}px`;
-                container.appendChild(flower);
-                setTimeout(() => flower.remove(), 3000);
-            }
-        }
-    </script>
+    <!-- External JS -->
+    <script src="script.js"></script>
 </body>
 </html>
