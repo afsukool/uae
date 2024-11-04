@@ -4,7 +4,7 @@ body {
     background-size: 400px;
     background-repeat: repeat;
     animation: animateFlag 5s linear infinite;
-    opacity: 0.1; /* Set a low opacity for a subtle effect */
+    opacity: 0.5; /* Set a low opacity for a subtle effect */
 }
 
 /* Flag Animation */
