@@ -28,11 +28,13 @@ function generateFireworks() {
     for (let i = 0; i < 5; i++) {
         const firework = document.createElement('div');
         firework.classList.add('firework');
-        // Position firework at the bottom of the viewport
+        // Randomize the left position within the viewport width
         firework.style.left = `${Math.random() * window.innerWidth}px`;
-        firework.style.top = `60vh`; // Start from 60% of viewport height
+        // Start the firework from a random height
+        firework.style.top = `${Math.random() * (window.innerHeight / 2)}px`; // Start from the upper half
         container.appendChild(firework);
-        // Remove firework after the animation duration
-        setTimeout(() => firework.remove(), 2000);
+        // Remove firework after animation ends
+        setTimeout(() => firework.remove(), 1000); // Match duration of the animation
     }
 }
+
