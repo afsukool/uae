@@ -6,12 +6,6 @@ document.getElementById('celebrateBtn').addEventListener('click', function() {
     generateFlowers();
 });
 
-// Function to toggle flag history visibility
-document.getElementById('showHistoryBtn').addEventListener('click', function() {
-    const flagHistory = document.getElementById('flagHistory');
-    flagHistory.classList.toggle('show');
-});
-
 // Function to generate confetti scattered across the screen
 function generateConfetti() {
     const container = document.body;
