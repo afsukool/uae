@@ -24,7 +24,7 @@
     display: flex;
     height: 100vh;
     overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.9); /* Slight overlay for readability */
+    background-color: rgba(255, 255, 255, 0.1); /* Slight overlay for readability */
 }
 
 /* Story Section */
@@ -33,6 +33,7 @@
     padding: 20px;
     color: #333;
     overflow-y: auto;
+    text-align:center;
 }
 
 .story-section h2 {
