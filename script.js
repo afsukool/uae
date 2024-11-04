@@ -11,10 +11,13 @@ function generateConfetti() {
     for (let i = 0; i < 50; i++) {
         const confetti = document.createElement('div');
         confetti.classList.add('confetti');
+        // Randomize the left position and top position starting from the top of the viewport
         confetti.style.left = `${Math.random() * window.innerWidth}px`;
-        confetti.style.top = `${Math.random() * window.innerHeight}px`;
+        confetti.style.top = `0px`; // Start from the top
+        // Randomize color for each confetti piece
         confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
         container.appendChild(confetti);
+        // Remove confetti after some time
         setTimeout(() => confetti.remove(), 2000);
     }
 }
