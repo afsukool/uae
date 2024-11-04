@@ -168,6 +168,27 @@ button#celebrateBtn:hover {
 .firework::after {
   transform: translate(-50%, -50%) rotate(-37deg) !important;
 }
+/* Particle animation */
+@keyframes particleBurst {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(50vmin * var(--dx)), calc(50vmin * var(--dy)));
+    opacity: 0;
+  }
+}
+
+.particle {
+  position: absolute;
+  width: 0.5vmin;
+  height: 0.5vmin;
+  border-radius: 50%; /* Make particles circular */
+  background-color: hsl(calc(360 * var(--hue)), 100%, 50%); /* Random color */
+  animation: particleBurst 1.5s ease-out forwards;
+}
+
 
 /* Footer */
 footer {
